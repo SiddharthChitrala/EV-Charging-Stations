@@ -1,0 +1,20 @@
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: newevstations
+ spec:
+   replicas: 3
+   selector:
+     matchLabels:
+       app: newevstations
+   template:
+     metadata:
+       labels:
+         app: newevstations
+     spec:
+       containers:
+       - name: travel
+         image: jp.icr.io/evstations/newevstations
+         imagePullPolicy: Always
+         ports:
+         - containerPort: 5000
