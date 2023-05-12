@@ -1,8 +1,9 @@
 import re
 import folium
-from flask import Flask, render_template, request, session
+from flask import Flask, json, render_template, request, session
 import requests
 import ibm_db
+import json
 
 app = Flask(__name__)
 
@@ -90,36 +91,56 @@ def logout():
     session.pop('username', None)
     return render_template('login.html')
 
-
-@app.route("/map", methods=['GET', 'POST'])
-def map():
-    output = []
-    if request.method == 'GET':
-        lat_1 = request.args.get('lat_1')
-        long_1 = request.args.get('long_1')
-
-        url = "https://ev-charge-finder.p.rapidapi.com/search-by-coordinates-point"
-
-        querystring = {"lat": lat_1, "lng": long_1}
-
-        headers = {
-            "X-RapidAPI-Key": "bbba8d02edmshd26eaa86314e163p16f673jsnaca266aea033",
-            "X-RapidAPI-Host": "ev-charge-finder.p.rapidapi.com"
-        }
-
-        response = requests.request(
-            "GET", url, headers=headers, params=querystring)
-        print(response.json())
-        output = response.json()
-        return render_template("home.html", output=output)
-
-    return render_template("index.html")
-
-
 @app.route("/home", methods=['POST', 'GET'])
 def index2():
     return render_template("index.html")
 
+@app.route("/address1", methods=['POST', 'GET'])
+def index3():
+    output=[]
+    return render_template("home.html",output=output)
+
+@app.route("/address", methods=['POST', 'GET'])
+def address():
+    outputs1=[]
+    output=[]
+    if request.method == 'POST':
+        #     # process GET request
+        #     return render_template('home.html')
+        # else:
+        # process POST request
+        address = request.form['address']
+
+        # make API requests to get latitude and longitude from address
+        url = "https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi"
+        querystring = {"address": address}
+        headers = {
+            "X-RapidAPI-Key": "d73283ca42msh25142662f0dd1eap11bde4jsnbe1a5c63f516",
+            "X-RapidAPI-Host": "address-from-to-latitude-longitude.p.rapidapi.com"
+        }
+        response = requests.get(url, headers=headers, params=querystring)
+        outputs1 = response.json()
+        print(outputs1)
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
+        # make API request to get charging stations from latitude and longitude
+        if 'Results' in outputs1:
+            latitude = outputs1['Results'][0]['latitude']
+            longitude = outputs1['Results'][0]['longitude']
+            url1 = "https://ev-charge-finder.p.rapidapi.com/search-by-coordinates-point"
+            querystring1 = {"lat": latitude, "lng": longitude}
+            headers1 = {
+                "X-RapidAPI-Key": "bbba8d02edmshd26eaa86314e163p16f673jsnaca266aea033",
+                "X-RapidAPI-Host": "ev-charge-finder.p.rapidapi.com"
+            }
+            response1 = requests.request("GET", url1, headers=headers1, params=querystring1)
+            output = response1.json()
+            print(output)
+        else:
+            output = []
+
+        return render_template("home.html", outputs1=outputs1, output=output)
+
 
 if __name__ == "__main__":
-    app.run(port=5000,host='0.0.0.0')
+    app.run(debug=True)

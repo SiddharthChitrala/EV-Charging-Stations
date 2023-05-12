@@ -350,6 +350,16 @@ h6 {
   background-repeat: no-repeat;
   background-size: cover;
 }
+#hero::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+}
 
 #hero .hero-container {
   position: absolute;
@@ -407,18 +417,25 @@ h6 {
 
 @media (min-width: 1024px) {
   #hero {
+    
     background-attachment: fixed;
   }
 }
 
 @media (max-width: 768px) {
   #hero h1 {
+    margin-bottom: 10px;
     font-size: 28px;
     line-height: 36px;
   }
 
-  #hero h2 {
+  #hero h2 p {
+    margin-bottom: 10px;
     line-height: 22px;
+  }
+  #hero{
+    
+    background:#151515;
   }
 }
 

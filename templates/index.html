@@ -31,11 +31,11 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div class="hero-container">
-      <a href="index.html" class="hero-logo" data-aos="zoom-in"><img src="/static/img/hero-logo.png" alt=""></a>
-      <h1 data-aos="zoom-in">Welcome To Ev Charge Stations</h1>
-      <p class="fs-5 text-danger">We are here to find Charging Stations for your car</p>
-      <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Get Started</a>
+    <div class="hero-container p-2">
+      <h1 style="color: white; font-size: 3rem; padding: 2rem;margin-top: 10rem; margin-bottom: -6rem;">Welcome To Ev Charge Stations</h1>
+      <p class="fs-5" style="color: #FCA311; font-weight: bold;margin-top: 10rem; margin-bottom: 10rem; ">We are here to find Charging Stations for your car</p>
+      
+      <a data-aos="fade-up" data-aos-delay="200" href="#about" style="margin-bottom: 9rem;" class="btn-get-started  scrollto">Get Started</a>
     </div>
   </section><!-- End Hero -->
 
@@ -50,11 +50,10 @@
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="/map">Find Station</a></li>
+          <li><a class="nav-link scrollto" href="/address1">Find Station</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
 
@@ -484,42 +483,41 @@
     <section id="contact" class="contact section-bg">
       <div class="container">
 
-        <div class="section-title">
+        <div class="heading"style="text-align: center;">
           <h2>Contact</h2>
         </div>
-
-        <div class="row">
-
-        </div>
-
-        <div class="col-lg-8 mt-5 mt-lg-0" style="margin-left: 30vh;">
-
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+      
+        <div class="row justify-content-center">
+          <div class="col-lg-8 mt-5 mt-lg-0">
+      
+            <form action="/contacts" method="post" role="form" class="php-email-form" data-aos="fade-left">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
               </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
-            </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+      
+          </div>
         </div>
-
+      
       </div>
+      
 
       </div>
     </section><!-- End Contact Section -->
