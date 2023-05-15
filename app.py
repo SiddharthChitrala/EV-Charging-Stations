@@ -1,15 +1,14 @@
 import re
-import folium
-from flask import Flask, json, render_template, request, session
+from flask import Flask, render_template, request, session
 import requests
 import ibm_db
-import json
+
 
 app = Flask(__name__)
 
 app.secret_key = 'a'
 conn = ibm_db.connect(
-    "DATABASE= bludb ;HOSTNAME=125f9f61-9715-46f9-9399-c8177b21803b.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=30426;SECURITY=SSL;SSLServerCertificate=DigiCertificate.crt;UID=cqc31977;PWD=ImVje7lzKyapTC0b;", '', '')
+    "DATABASE= bludb ;HOSTNAME=125f9f61-9715-46f9-9399-c8177b21803b.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=30426;SECURITY=SSL;SSLCertificate=DigiCertificate.crt;UID=cqc31977;PWD=ImVje7lzKyapTC0b;", '', '')
 print('connected')
 
 
@@ -20,7 +19,6 @@ def login():
     msg = ''
 
     if request.method == 'POST':
-        # print("Haiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         username = request.form['username']
         password = request.form['password']
         sql = "SELECT * FROM EVS WHERE username =? AND password=?"
